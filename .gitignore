@@ -1,0 +1,4 @@
+#when the .c files are compiled, a .dSYM is generated.
+#We ignore those to not post into repo.
+
+*.dSYM/
