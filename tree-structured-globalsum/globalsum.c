@@ -1,6 +1,10 @@
 #include <stdio.h>
 #include <mpi.h>
 
+//NOTE: tree-structured global sum exists as a function in openMPI as MPI_Reduce(). We are just coding from "scratch" to show
+//      understanding.
+
+
 //Assume the values held within each process is equal to their ranks+1...
 //this is done to showcase the parallel process only.
 
