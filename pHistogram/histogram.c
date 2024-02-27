@@ -30,6 +30,12 @@ int main(int argc, char** argv) {
         histogram[recvbuf[i]]++;
     }
 
+    // Print out the local histogram of each process
+    printf("Process %d local histogram:\n", rank);
+    for (i = 0; i < M; i++) {
+        printf("The frequency of %d: was %d\n", i, histogram[i]);
+    }
+
     // Gather the local histograms into the global histogram
     MPI_Reduce(histogram, recvhist, M, MPI_INT, MPI_SUM, 0, MPI_COMM_WORLD);
     //params are : data, recieve buffer, specify the number of elements in the buffer, specify data type of each element,
