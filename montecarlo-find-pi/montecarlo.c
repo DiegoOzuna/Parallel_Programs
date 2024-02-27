@@ -13,7 +13,7 @@ int main(int argc, char** argv) {
     long double x, y, distance_squared=0;
     long long int total_toss, toss_per_p, number_in_circle=0, total_num_in_circle =0;
     double pi_estimate =0;
-    srand((unsigned int)time(NULL));
+    srand((unsigned int)time(NULL) + rank);
 
     MPI_Init(&argc, &argv); //initialize mpi process
     MPI_Comm_rank(MPI_COMM_WORLD, &rank); //returns the unique identifier for a process in a group
@@ -50,7 +50,7 @@ int main(int argc, char** argv) {
 
     if(rank==0){
         pi_estimate = 4*total_num_in_circle/((double) total_toss);
-        printf("The estimate of pi: %f \nfrom %lld total tosses", pi_estimate, total_num_in_circle);
+        printf("The estimate of pi: %f \nfrom %lld total tosses", pi_estimate, total_toss);
     }
 
     MPI_Finalize();
