@@ -38,8 +38,9 @@ int main() {
         gettimeofday(&end_time, NULL);
 
         // Calculate total time
-        total_time = (end_time.tv_sec - start_time.tv_sec) +
-                     (end_time.tv_usec - start_time.tv_usec) / 1e6;
+        long start_time_in_microseconds = start_time.tv_sec * 1e6 + start_time.tv_usec;
+        long end_time_in_microseconds = end_time.tv_sec * 1e6 + end_time.tv_usec;
+        total_time = (end_time_in_microseconds - start_time_in_microseconds) / 1e6;
 
         // Calculate average time per thread
         double avg_time = total_time / num_threads;
