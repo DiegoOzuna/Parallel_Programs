@@ -2,3 +2,4 @@
 #We ignore those to not post into repo.
 
 *.dSYM/
+test.c
