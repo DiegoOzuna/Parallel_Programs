@@ -29,6 +29,9 @@ int main(int argc, char* argv[]){
     //All porcesses will have this vector to work with
     std::vector<int> numbers(search_max, 0);
 
+    // Start the timer
+    double tic = MPI_Wtime();
+
     if(rank == 0){
         //For rank 0, fill the vector with all the numbers from 1 to search_max
         for(int i = 0; i < search_max; i++){
@@ -113,6 +116,14 @@ int main(int argc, char* argv[]){
                 MPI_Send(&numbers[0], numbers.size(), MPI_INT, 0, 0, MPI_COMM_WORLD);
             }  
         }
+    }
+
+    // Stop the timer
+    double toc = MPI_Wtime();
+
+    // Print the elapsed time
+    if(rank == 0) {
+        std::cout << "\nElapsed time: " << toc - tic << " seconds" << std::endl;
     }
 
     MPI_Finalize();
