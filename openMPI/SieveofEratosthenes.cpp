@@ -12,8 +12,19 @@ int main(int argc, char* argv[]){
     MPI_Comm_rank(MPI_COMM_WORLD, &rank);
     MPI_Comm_size(MPI_COMM_WORLD, &commsize);
 
+    // Check if the command-line argument is provided
+    if(argc < 2) {
+        if(rank == 0) {
+            std::cout << "Please provide the search max as a command-line argument." << std::endl;
+        }
+        MPI_Finalize();
+        return 0;
+    }
     //create a vector with howerver many 0's are needed
-    int search_max = 100;
+    // Convert the command-line argument to integer
+    int search_max = std::stoi(argv[1]);
+
+    
     int sqrt_search_max = (int) sqrt(search_max);
     //All porcesses will have this vector to work with
     std::vector<int> numbers(search_max, 0);
